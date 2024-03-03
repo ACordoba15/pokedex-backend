@@ -7,7 +7,7 @@ class Server {
   private app: Application;
   private port: string;
   private apiPaths = {
-    pokemons: '/api/pokemons'
+    pokemonRoutes: '/api/pokemons'
   }
 
   constructor() {
@@ -42,7 +42,7 @@ class Server {
   }
 
   routes() {
-    this.app.use(this.apiPaths.pokemons, pokemonRoutes)
+    this.app.use(this.apiPaths.pokemonRoutes, pokemonRoutes)
   }
 
   listen() {

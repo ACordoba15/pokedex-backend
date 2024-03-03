@@ -1,4 +1,4 @@
-import { Sequelize } from 'sequelize';
+import { DataTypes, Sequelize } from 'sequelize';
 
 const db = new Sequelize("pokedex", "sa", "Prueba001.", {
   host: 'localhost',

@@ -7,10 +7,10 @@
 
 ## SEQUELIZE
 - CREATE NEW MIGRATION
--- npx sequelize migration:generate --name migration-skeleton
+  * npx sequelize migration:generate --name migration-skeleton
 - ADD DATA FROM SEED
--- npx sequelize seed:generate --name demo-user
-- RUN SEED
--- npx sequelize db:seed:all
+  * npx sequelize seed:generate --name demo-user
 - RUN MIGRATION
--- npx sequelize db:migrate
+  * npx sequelize db:migrate
+- RUN SEED
+  * npx sequelize db:seed:all

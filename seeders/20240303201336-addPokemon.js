@@ -1,6 +1,8 @@
 'use strict';
 
 /** @type {import('sequelize-cli').Migration} */
+
+const axios = require('axios');
 module.exports = {
   async up (queryInterface, Sequelize) {
     /**

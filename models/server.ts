@@ -6,6 +6,7 @@ import db from '../db/connection';
 class Server {
   private app: Application;
   private port: string;
+  private database = 'pokedex';
   private apiPaths = {
     pokemonRoutes: '/api/pokemons'
   }
@@ -23,6 +24,11 @@ class Server {
   async dbConnection() {
     try {
       await db.authenticate();
+      await db.query(`IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = '${this.database}')
+        BEGIN
+          CREATE DATABASE ${this.database};
+        END;
+      `);
       console.log("DB Online")
     }
     catch (error:any) {

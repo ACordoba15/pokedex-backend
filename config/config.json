@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "sa",
+    "password": "Prueba001.",
+    "database": "pokedex",
+    "host": "localhost",
+    "dialect": "mssql"
+  }
+}

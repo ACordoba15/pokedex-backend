@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
+import Pokemon from "../models/pokemon";
 
-export const GetPokemons = (req: Request, res: Response) => {
+export const GetPokemons = async (req: Request, res: Response) => {
 
-  res.json({
-    msg: 'getPokemons'
-  });
+  const pokemon = await Pokemon.findAll();
+  res.json(pokemon);
 }
 
 export const GetPokemon = (req: Request, res: Response) => {

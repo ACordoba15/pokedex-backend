@@ -4,3 +4,13 @@
 ## RUN SERVER
 - nodemon dist/app.js
 - tsc --watch
+
+## SEQUELIZE
+- CREATE NEW MIGRATION
+-- npx sequelize migration:generate --name migration-skeleton
+- ADD DATA FROM SEED
+-- npx sequelize seed:generate --name demo-user
+- RUN SEED
+-- npx sequelize db:seed:all
+- RUN MIGRATION
+-- npx sequelize db:migrate

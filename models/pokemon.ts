@@ -58,23 +58,15 @@ const pokemon = db.define('pokemon', {
   female: {
     type: DataTypes.BOOLEAN,
     allowNull: false
+  },
+  createdAt: {
+    type: DataTypes.DATE,
+    allowNull: false
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    allowNull: false
   }
-});
-
-pokemon.sync();
-
-const bulbasaur = pokemon.create({
-  name: 'bulbasaur', 
-  type1: 'grass', 
-  type2: 'poison', 
-  imageDefault: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png', 
-  imageDefaultShiny: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png', 
-  imageFemale: null, 
-  imageFemaleShiny: null, 
-  imageArtwork: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png', 
-  imageArtworkShiny: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png', 
-  male: 0, 
-  female: 0
 });
 
 export default pokemon;

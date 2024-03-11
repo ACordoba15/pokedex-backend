@@ -1,8 +1,6 @@
 import axios from 'axios';
 import db from '../db/connection'
 
-let listPokemons = [];
-
 const getAllPokemons = async() => {
   const url = 'https://pokeapi.co/api/v2/pokemon?limit=2000&offset=0';
   let pokemons = [];
@@ -26,18 +24,18 @@ const getAllPokemonsDetailed = async (pokemons) => {
           name: response.data.name, 
           type1: response.data.types[0]?.type.name ?? null, 
           type2: response.data.types[1]?.type.name ?? null, 
-          imageDefault: response.data.sprites.other.home.front_default?? null, 
-          imageDefaultShiny: response.data.sprites.other.home.front_shiny?? null,
-          imageFemale: response.data.sprites.other.home.front_female?? null, 
-          imageFemaleShiny: response.data.sprites.other.home.front_shiny_female?? null, 
+          imageDefault: validateGenders(response.data.id) != 1 ? response.data.sprites.other.home.front_default : null, 
+          imageDefaultShiny: validateGenders(response.data.id) != 1 ? response.data.sprites.other.home.front_shiny : null,
+          imageFemale: (validateGenders(response.data.id) == 1 || validateGenders(response.data.id) == 3) ? response.data.sprites.other.home.front_female : null, 
+          imageFemaleShiny: (validateGenders(response.data.id) == 1 || validateGenders(response.data.id) == 3) ? response.data.sprites.other.home.front_shiny_female : null, 
           imageArtwork: response.data.sprites.other['official-artwork'].front_default?? null, 
           imageArtworkShiny: response.data.sprites.other['official-artwork'].front_shiny?? null,
-          male: 0, 
-          female: 0,
+          male: validateGenders(response.data.id) != 1 ? 0 : 1, 
+          female: validateGenders(response.data.id) != 0 ? 0 : 1,
           createdAt: new Date().toJSON(),
           updatedAt: new Date().toJSON()
         };
-        listPokemons.push(data);
+
         db.query(`
           INSERT INTO POKEMON (
             pokedexId,
@@ -80,5 +78,31 @@ const getAllPokemonsDetailed = async (pokemons) => {
   }
   return listPokemons;
 } 
+
+const validateGenders = (id) => {
+  const maleList = [32, 33, 34, 236, 237, 106, 107, 128, 10250, 10251, 10252, 313, 381, 10063, 414, 475, 10068, 538, 539, 627, 628, 10240, 641, 10019, 642, 10020, 645, 10021, 859, 860, 861, 10272, 1014, 1015, 1016];
+  const femaleList = [29, 30, 31, 440, 113, 242, 115, 10039, 238, 124, 241, 314, 380, 10062, 413, 10004, 10005, 416, 478, 488, 548, 549, 10237, 629, 630, 669, 670, 10061, 671, 758, 10129, 761, 762, 763, 856, 857, 858, 868, 869, 10223, 905, 10249, 957, 958, 959, 1017, 10273, 10274, 10275];
+  const noGenderList = [];
+
+
+  if (maleList.includes(id))
+  {
+    return 0;
+  }
+  
+  else if (femaleList.includes(id))
+  {
+    return 1;
+  }
+  
+  else if (noGenderList.includes(id))
+  {
+    return 2;
+  }
+
+  else {
+    return 3;
+  }
+}
 
 export default getAllPokemons;

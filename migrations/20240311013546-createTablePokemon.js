@@ -16,6 +16,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.DataTypes.INTEGER
       },
+      pokedexId : {
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER
+      },
       name: {
         type: Sequelize.DataTypes.STRING(100),
         allowNull: true,

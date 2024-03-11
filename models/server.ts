@@ -2,6 +2,7 @@ import express, { Application} from 'express';
 import pokemonRoutes from '../routes/pokemon';
 import cors from 'cors';
 import db from '../db/connection';
+import getAllPokemons from '../utils/GetAllPokemons';
 
 class Server {
   private app: Application;
@@ -24,7 +25,16 @@ class Server {
   async dbConnection() {
     try {
       await db.authenticate();
+      const result: any = await db.query("SELECT COUNT(*) AS 'ROWS' FROM pokemon;", {plain: true});
+      const rows: number = result? result["ROWS"] : 0;
+      console.log("results:", rows);
       console.log("DB Online");
+      if (rows == 0)
+      {
+        // Se agregan los datos a la tabla.
+        getAllPokemons();
+        console.log("Data added to table successfully");
+      }
     }
     catch (error:any) {
       throw new Error(error);

@@ -8,6 +8,10 @@ const pokemon = db.define('pokemon', {
     primaryKey: true,
     type: DataTypes.NUMBER
   },
+  pokedexId : {
+    allowNull: false,
+    type: DataTypes.NUMBER
+  },
   name: {
     type: DataTypes.STRING,
     allowNull: true,

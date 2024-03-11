@@ -24,17 +24,13 @@ class Server {
   async dbConnection() {
     try {
       await db.authenticate();
-      await db.query(`IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = '${this.database}')
-        BEGIN
-          CREATE DATABASE ${this.database};
-        END;
-      `);
-      console.log("DB Online")
+      console.log("DB Online");
     }
     catch (error:any) {
       throw new Error(error);
     }
   }
+
 
   middlewares() {
     // CORS

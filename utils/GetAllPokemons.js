@@ -3,6 +3,7 @@ import axios from 'axios';
 let listPokemons = [];
 
 const getAllPokemons = async() => {
+  console.log("asda")
   const url = 'https://pokeapi.co/api/v2/pokemon?limit=1&offset=0';
   let pokemons = [];
   await axios.get(url)

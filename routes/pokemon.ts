@@ -3,10 +3,10 @@ import { DeletePokemons, GetPokemon, GetPokemons, PostPokemons, PutPokemons } fr
 
 const router = Router();
 // Se definen las rutas y se asocian con el controlador
-router.get('/',       GetPokemons);
-router.get('/:id',    GetPokemon);
+router.get('/all',       GetPokemons);
+router.get('/id',    GetPokemon);
 router.post('/',      PostPokemons);
-router.put('/:id',    PutPokemons);
-router.delete('/:id', DeletePokemons);
+router.put('/id',    PutPokemons);
+router.delete('/id', DeletePokemons);
 
 export default router;

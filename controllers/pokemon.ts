@@ -2,13 +2,12 @@ import { Request, Response } from "express";
 import Pokemon from "../models/pokemon";
 
 export const GetPokemons = async (req: Request, res: Response) => {
-
-  const pokemon = await Pokemon.findAll();
-  res.json(pokemon);
+  const pokemons = await Pokemon.findAll({order: [ 'pokedexId' ]});
+  res.json(pokemons);
 }
 
 export const GetPokemon = (req: Request, res: Response) => {
-  const { id } = req.params;
+  const { id } = req.params;+
 
   res.json({
     msg: 'getPokemon',

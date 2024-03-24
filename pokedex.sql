@@ -14,8 +14,8 @@ Create table pokemon (
   imageFemaleShiny VARCHAR(250),
   imageArtwork VARCHAR(250),
   imageArtworkShiny VARCHAR(250),
-  male bit, -- 0 true, 1 false
-  female bit -- 0 true, 1 false
+  male bit, -- 1 true, 0 false
+  female bit -- 1 true, 0 false
 );
 
 -- select * from pokemon;
